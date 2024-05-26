@@ -49,7 +49,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="tstStaffCollection.cs" />
+    <Compile Include="tstStaff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tstUserStaff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
