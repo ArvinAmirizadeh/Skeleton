@@ -4,7 +4,6 @@ namespace ClassLibrary
 {
     public class clsStaff
     {
-        // Private data members for the Staff properties
         private int mStaffId;
         private string mName;
         private string mRole;
@@ -112,7 +111,6 @@ namespace ClassLibrary
             {
                 error += "Phone number must be less than 15 characters. ";
             }
-
             return error;
         }
     }
