@@ -40,7 +40,7 @@ namespace ClassLibrary
             DB.AddParameter("@UserName", UserName);
             DB.AddParameter("@Password", Password);
             //execute the stored procedure
-            DB.Execute("sproc_tblUsers_FindUserNamePW");
+            DB.Execute("sproc_TableLogin_FindUserNamePW");
             //if one record is found (there should be either one or none)
             if (DB.Count == 1)
             {
