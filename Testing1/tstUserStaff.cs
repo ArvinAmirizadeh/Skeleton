@@ -17,7 +17,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void StaffIDPropertyOK()
+        public void StaffIdPropertyOK()
         {
             // create an instance of the class we want to create
             clsStaffUser AStaff = new clsStaffUser();
@@ -30,7 +30,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void UserNamePropertyOK()
+        public void UsernamePropertyOK()
         {
             //create an instance of the class we want to create
             clsStaffUser AnUser = new clsStaffUser();
@@ -72,7 +72,7 @@ namespace Testing3
             Assert.IsTrue(Found);
         }
         [TestMethod]
-        public void TestUserNamePWFound()
+        public void TestUsernamePWFound()
         {
             //create an instance of the class we want to create
             clsStaffUser AnUser = new clsStaffUser();

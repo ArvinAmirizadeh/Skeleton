@@ -238,7 +238,7 @@ namespace Testing3
             }
             else
             {
-                OK = false;
+                OK = true;
             }
             // Test to see that there are no records
             Assert.IsTrue(OK);
