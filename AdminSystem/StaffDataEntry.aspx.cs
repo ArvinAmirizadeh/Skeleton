@@ -44,7 +44,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // capture the staff phone number
         string PhoneNumber = txtPhoneNumber.Text;
         // validate the data
-        Error = AStaff.Valid(StaffName, StaffEmail, StaffRole, PhoneNumber.ToString(),);
+        Error = AStaff.Valid(StaffName, StaffEmail, StaffRole, PhoneNumber);
         if (Error == "")
         {
             // capture the staff ID

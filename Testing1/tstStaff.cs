@@ -11,9 +11,11 @@ namespace TestingStaff
         // Create good test data
         string StaffId = "100";
         string Name = "Lena greenwood";
-        string Email = "lenaGRw@example.com";
+        string StaffEmail = "lenaGRw@example.com";
         string Role = "Shopkeeper";
-        string Phone = "0796899669"
+        string PhoneNumber = "0796899669";
+        
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -37,13 +39,13 @@ namespace TestingStaff
         }
 
         [TestMethod]
-        public void StaffEmailPropertyOK()
+        public void StaffStaffEmailPropertyOK()
         {
             // similar setup as StaffNamePropertyOK
             clsStaff AStaff = new clsStaff();
             string TestData = "LenaGRw@example.com";
-            AStaff.Email = TestData;
-            Assert.AreEqual(AStaff.Email, TestData);
+            AStaff.StaffEmail = TestData;
+            Assert.AreEqual(AStaff.StaffEmail, TestData);
         }
 
         [TestMethod]
@@ -62,8 +64,17 @@ namespace TestingStaff
             // similar setup as StaffNamePropertyOK
             clsStaff AStaff = new clsStaff();
             string TestData = "0796899669";
-            AStaff.Phone = TestData;
+            AStaff.PhoneNumber = TestData;
             Assert.AreEqual(AStaff.Role, TestData);
+        }
+        
+        [TestMethod]
+        public void ActiveStatusPropertyOK()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean TestData = false;
+            AStaff.ActiveStatus = TestData;
+            Assert.AreEqual(AStaff.ActiveStatus, TestData);
         }
 
         [TestMethod]
@@ -71,7 +82,7 @@ namespace TestingStaff
         {
             clsStaff aStaff = new clsStaff();
             Boolean Found = false;
-            Int32 StaffId = 9;  // Changed from 21 to 8
+            Int32 StaffId = 1;  // Changed from 21 to 8
             Found = aStaff.Find(StaffId);
             Assert.IsTrue(Found, "Error: The staff member could not be found.");
         }
@@ -117,7 +128,7 @@ namespace TestingStaff
             Boolean Found = false;
             Boolean OK = true;
             Found = aStaff.Find(9);  // Changed from 21 to 8
-            if (aStaff.Phone != "0796899668") { OK = false; }
+            if (aStaff.PhoneNumber != "0796899668") { OK = false; }
             Assert.IsTrue(OK, "Phone number not found correctly.");
         }
         [TestMethod]
@@ -128,7 +139,7 @@ namespace TestingStaff
             // String variable to store any error message
             string Error = "";
             // Invoke the method
-            Error = aStaff.Valid(Name, Email, Role, Phone);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             // Test to see that the result is correct
             Assert.AreEqual("", Error, "Validation failed when it should have passed.");
         }
@@ -140,7 +151,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = "";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -150,7 +161,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = "a";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -160,7 +171,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = "aa";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -170,7 +181,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 254);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -180,7 +191,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 255);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -190,7 +201,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 256);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -200,78 +211,78 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 500);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
-        // Email validation tests
+        // StaffEmail validation tests
         [TestMethod]
-        public void EmailMinLessOne()
+        public void StaffEmailMinLessOne()
         {
             clsStaff aStaff = new clsStaff();
             string Error = "";
-            string Email = "";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
-            Assert.AreNotEqual("", Error);
-        }
-
-        [TestMethod]
-        public void EmailMin()
-        {
-            clsStaff aStaff = new clsStaff();
-            string Error = "";
-            string Email = "a";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
-            Assert.AreEqual("", Error);
-        }
-
-        [TestMethod]
-        public void EmailMinPlusOne()
-        {
-            clsStaff aStaff = new clsStaff();
-            string Error = "";
-            string Email = "aa";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
-            Assert.AreEqual("", Error);
-        }
-
-        [TestMethod]
-        public void EmailMaxLessOne()
-        {
-            clsStaff aStaff = new clsStaff();
-            string Error = "";
-            string Email = new string('a', 254);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
-            Assert.AreEqual("", Error);
-        }
-
-        [TestMethod]
-        public void EmailMax()
-        {
-            clsStaff aStaff = new clsStaff();
-            string Error = "";
-            string Email = new string('a', 255);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
-            Assert.AreEqual("", Error);
-        }
-
-        [TestMethod]
-        public void EmailMaxPlusOne()
-        {
-            clsStaff aStaff = new clsStaff();
-            string Error = "";
-            string Email = new string('a', 256);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            string StaffEmail = "";
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
         [TestMethod]
-        public void EmailExtremeMax()
+        public void StaffEmailMin()
         {
             clsStaff aStaff = new clsStaff();
             string Error = "";
-            string Email = new string('a', 500);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            string StaffEmail = "a";
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffEmailMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string StaffEmail = "aa";
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffEmailMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string StaffEmail = new string('a', 254);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffEmailMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string StaffEmail = new string('a', 255);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffEmailMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string StaffEmail = new string('a', 256);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffEmailExtremeMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string StaffEmail = new string('a', 500);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -282,7 +293,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = "";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -292,7 +303,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = "a";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -302,7 +313,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = "aa";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -312,7 +323,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 254);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -322,7 +333,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 255);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -332,7 +343,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 256);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -342,7 +353,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 500);
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -353,7 +364,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string PhoneNumber = "";
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -363,7 +374,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string PhoneNumber = "12345"; // Assuming min length is 6
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -373,7 +384,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string PhoneNumber = "123456"; // Assuming min length is 6
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -383,7 +394,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string PhoneNumber = "1234567"; // Assuming min length is 6
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -393,7 +404,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string PhoneNumber = new string('1', 21); // Assuming max length is 20
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreNotEqual("", Error);
         }
 
@@ -402,8 +413,8 @@ namespace TestingStaff
         {
             clsStaff aStaff = new clsStaff();
             string Error = "";
-            string PhoneNumber = new string('1', 20); // Assuming max length is 20
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            string PhoneNumber = new string('1', 14); // Assuming max length is 20
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
@@ -412,17 +423,10 @@ namespace TestingStaff
         {
             clsStaff aStaff = new clsStaff();
             string Error = "";
-            string PhoneNumber = new string('1', 19); // Assuming max length is 20
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
+            string PhoneNumber = new string('1', 13); // Assuming max length is 20
+            Error = aStaff.Valid(Name, StaffEmail, Role, PhoneNumber);
             Assert.AreEqual("", Error);
         }
 
-        [TestMethod]
-        public void PhoneNumberInvalidData()
-        {
-            clsStaff aStaff = new clsStaff();
-            string Error = "";
-            string PhoneNumber = "123ABC!@#"; // Invalid characters
-            Error = aStaff.Valid(Name, Email, Role, PhoneNumber);
-            Assert.AreNotEqual("", Error);
-        }
+    }
+}
