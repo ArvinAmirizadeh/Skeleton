@@ -58,10 +58,10 @@ namespace ClassLibrary
                 clsStaff AStaff = new clsStaff();
                 //read in the fields from the current record
                 AStaff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
-                AStaff.Name = Convert.ToString(DB.DataTable.Rows[Index]["StaffName"]);
-                AStaff.StaffEmail = Convert.ToString(DB.DataTable.Rows[Index]["StaffEmail"]);
-                AStaff.Role = Convert.ToString(DB.DataTable.Rows[Index]["StaffRole"]);
-                AStaff.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
+                AStaff.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
+                AStaff.StaffEmail = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                AStaff.Role = Convert.ToString(DB.DataTable.Rows[Index]["Role"]);
+                AStaff.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["Phone"]);
                 //add the record to the private data member
                 mStaffList.Add(AStaff);
                 //point at the next record
@@ -74,7 +74,7 @@ namespace ClassLibrary
             // object for data connection
             clsDataConnection DB = new clsDataConnection();
             // execute the stored procedure
-            DB.Execute("sproc_tblStaff_SelectAll");
+            DB.Execute("sproc_TableStaff_SelectAll");
             //populate the array list with data table
             PopulateArray(DB);
         }
@@ -85,12 +85,13 @@ namespace ClassLibrary
             // connect to the database
             clsDataConnection DB = new clsDataConnection();
             // set the parameters for the stored procedure
-            DB.AddParameter("@StaffName", mThisStaff.Name);
-            DB.AddParameter("@StaffEmail", mThisStaff.StaffEmail);
-            DB.AddParameter("@StaffRole", mThisStaff.Role);
-            DB.AddParameter("@PhoneNumber", mThisStaff.PhoneNumber);
+            DB.AddParameter("@Name", mThisStaff.Name);
+            DB.AddParameter("@Email", mThisStaff.StaffEmail);
+            DB.AddParameter("@Role", mThisStaff.Role);
+            DB.AddParameter("@Phone", mThisStaff.PhoneNumber);
+            DB.AddParameter("@ActiveStatus", mThisStaff.ActiveStatus);
             // execute the query returning the primary key value
-            return DB.Execute("sproc_tblStaff_Insert");
+            return DB.Execute("sproc_TableStaff_Insert");
         }
 
         public void Update()
@@ -100,12 +101,13 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             // set the parameters for the stored procedure
             DB.AddParameter("@StaffID", ThisStaff.StaffId);
-            DB.AddParameter("@StaffName", ThisStaff.Name);
-            DB.AddParameter("@StaffEmail", ThisStaff.StaffEmail);
-            DB.AddParameter("@StaffRole", ThisStaff.Role);
-            DB.AddParameter("@PhoneNumber", ThisStaff.PhoneNumber);
+            DB.AddParameter("@Name", ThisStaff.Name);
+            DB.AddParameter("@Email", ThisStaff.StaffEmail);
+            DB.AddParameter("@Role", ThisStaff.Role);
+            DB.AddParameter("@Phone", ThisStaff.PhoneNumber);
+            DB.AddParameter("@ActiveStatus", ThisStaff.ActiveStatus);
             // execute the stored procedure
-            DB.Execute("sproc_tblStaff_Update");
+            DB.Execute("sproc_TableStaff_Update");
         }
 
         public void Delete()
@@ -114,20 +116,20 @@ namespace ClassLibrary
             // connect to the database
             clsDataConnection DB = new clsDataConnection();
             // set the parameters for the stored procedure
-            DB.AddParameter("@StaffID", mThisStaff.StaffId);
+            DB.AddParameter("@StaffId", mThisStaff.StaffId);
             // execute the stored procedure
-            DB.Execute("sproc_tblStaff_Delete");
+            DB.Execute("sproc_TableStaff_Delete");
         }
 
-        public void ReportByRole(string Role)
+        public void ReportByRole(string Name)
         {
             //filters the records based on a full or partial role
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //send the Role parameter to the database
-            DB.AddParameter("@Role", Role);
+            DB.AddParameter("@Name", Name);
             //execute the stored procedure
-            DB.Execute("sproc_tblStaff_FilterByRole");
+            DB.Execute("sproc_TableStaff_FilterByName");
             PopulateArray(DB);
         }
     }

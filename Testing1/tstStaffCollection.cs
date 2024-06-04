@@ -221,7 +221,7 @@ namespace Testing3
             // Variable to store the outcome
             Boolean OK = true;
             // Apply a role that doesn't exist
-            FilteredStaff.ReportByRole("IT staff");
+            FilteredStaff.ReportByRole("Jane Doe");
             // Check that the correct number of records are found
             if (FilteredStaff.Count == 2)
             {

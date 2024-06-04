@@ -10,6 +10,7 @@ namespace ClassLibrary
         private string mRole;
         private string mPhoneNumber;
         private string mEmail;
+        private Boolean mActiveStatus;
 
         // Public properties
         public int StaffId
@@ -38,6 +39,19 @@ namespace ClassLibrary
             set { mEmail = value; }
         }
 
+        public bool ActiveStatus
+        {
+            get
+            {
+                return mActiveStatus;
+            }
+            set
+            {
+                mActiveStatus = value;
+            }
+        }
+
+
         // Find method
         public bool Find(int StaffId)
         {
@@ -48,17 +62,17 @@ namespace ClassLibrary
             DB.AddParameter("@StaffId", StaffId);
 
             // Execute the stored procedure
-            DB.Execute("sproc_tblStaff_FilterByStaffId");
+            DB.Execute("sproc_TableStaff_FilterByStaffId");
 
             // Check if one record is found
             if (DB.Count == 1)
             {
                 // Copy the data from the database to the private data members
-                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
-                mName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
-                mRole = Convert.ToString(DB.DataTable.Rows[0]["StaffRole"]);
-                mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
-                mEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mRole = Convert.ToString(DB.DataTable.Rows[0]["Role"]);
+                mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["Phone"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
                 // Return that everything worked OK
                 return true;
             }
@@ -108,6 +122,10 @@ namespace ClassLibrary
             {
                 error += "Phone number cannot be empty. ";
             }
+            if (phoneNumber.Length < 6)
+            {
+                error += "Phone number must be less than 15 characters. ";
+            }
             if (phoneNumber.Length > 15)
             {
                 error += "Phone number must be less than 15 characters. ";
@@ -115,5 +133,6 @@ namespace ClassLibrary
 
             return error;
         }
+
     }
 }
