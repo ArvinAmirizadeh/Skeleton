@@ -63,9 +63,9 @@ namespace TestingStaff
         {
             // similar setup as StaffNamePropertyOK
             clsStaff AStaff = new clsStaff();
-            string TestData = "0796899669";
+            string TestData = "0796899668";
             AStaff.PhoneNumber = TestData;
-            Assert.AreEqual(AStaff.Role, TestData);
+            Assert.AreEqual(AStaff.PhoneNumber, TestData);
         }
         
         [TestMethod]
@@ -82,7 +82,7 @@ namespace TestingStaff
         {
             clsStaff aStaff = new clsStaff();
             Boolean Found = false;
-            Int32 StaffId = 1;  // Changed from 21 to 8
+            Int32 StaffId = 17;  // Changed from 21 to 8
             Found = aStaff.Find(StaffId);
             Assert.IsTrue(Found, "Error: The staff member could not be found.");
         }
@@ -93,9 +93,9 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffId = 1;  // Changed from 21 to 8
+            Int32 StaffId = 17;  // Changed from 21 to 8
             Found = aStaff.Find(StaffId);
-            if (aStaff.StaffId != 9) { OK = false; }  // Changed from 21 to 8
+            if (aStaff.StaffId != 17) { OK = false; }  // Changed from 21 to 8
             Assert.IsTrue(OK, "Staff ID not found correctly.");
         }
 
@@ -105,8 +105,8 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Found = aStaff.Find(9);  // Changed from 21 to 8
-            if (aStaff.Name != "John") { OK = false; }
+            Found = aStaff.Find(17);  // Changed from 21 to 8
+            if (aStaff.Name != "Lena Greenwood") { OK = false; }
             Assert.IsTrue(OK, "Name not found correctly.");
         }
 
@@ -116,8 +116,8 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Found = aStaff.Find(9);  // Changed from 21 to 8
-            if (aStaff.Role != "Manager") { OK = false; }
+            Found = aStaff.Find(17);  // Changed from 21 to 8
+            if (aStaff.Role != "Shopkeeper") { OK = false; }
             Assert.IsTrue(OK, "Role not found correctly.");
         }
 
@@ -127,7 +127,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Found = aStaff.Find(9);  // Changed from 21 to 8
+            Found = aStaff.Find(17);  // Changed from 21 to 8
             if (aStaff.PhoneNumber != "0796899668") { OK = false; }
             Assert.IsTrue(OK, "Phone number not found correctly.");
         }
