@@ -74,12 +74,12 @@
             <div>
                 <asp:Label ID="lblOrderID" runat="server" Text="Order ID" CssClass="form-label"></asp:Label>
                 <asp:TextBox ID="txtOrderID" runat="server" CssClass="form-input" MaxLength="4" TextMode="Number"></asp:TextBox>
-                <asp:Button ID="BtnFind" runat="server" OnClick="btnFind_Click" Text="Find" CssClass="form-button" />
+                <asp:Button ID="BtnFind" runat="server"  Text="Find" CssClass="form-button" />
             </div>
             <div>
      <asp:Label ID="Label1" runat="server" Text="Staff ID" CssClass="form-label"></asp:Label>
      <asp:TextBox ID="TextBox1" runat="server" CssClass="form-input" MaxLength="4" TextMode="Number"></asp:TextBox>
-     <asp:Button ID="Button2" runat="server" OnClick="btnFind_Click2" Text="Find" CssClass="form-button" />
+     <asp:Button ID="Button2" runat="server"  Text="Find" CssClass="form-button" />
  </div>
             <div>
     <asp:Label ID="Labelamont" runat="server" Text="Amount Of Order" CssClass="form-label"></asp:Label>
@@ -107,8 +107,8 @@
                 <asp:Label ID="lblError" runat="server" CssClass="form-label"></asp:Label>
             </div>
             <div>
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="form-button" OnClick="btnCancel_Click" />
-                <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" Text="Ok" CssClass="form-button" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="form-button"  />
+                <asp:Button ID="btnOk" runat="server" Text="Ok" CssClass="form-button" />
             </div>
              
         </div>
