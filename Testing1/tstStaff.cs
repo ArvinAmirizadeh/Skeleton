@@ -9,7 +9,7 @@ namespace TestingStaff
     {
 
         // Create good test data
-        readonly int StaffId = "100";
+        string StaffId = "100";
         string Name = "Lena greenwood";
         string StaffEmail = "lenaGRw@example.com";
         string Role = "Shopkeeper";

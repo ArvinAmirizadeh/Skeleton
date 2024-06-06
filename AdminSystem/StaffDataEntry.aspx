@@ -59,15 +59,7 @@
         input[type="submit"]:hover, input[type="button"]:hover, button:hover {
             background-color: #c0392b; /* Darker shade of red on hover */
         }
-        .checkbox {
-            margin: 5px 0 15px 0;
-            position: relative;
-            line-height: 1;
-            text-align: center;
-        }
-        .checkbox input[type="checkbox"] {
-            margin-right: 5px;
-        }
+        
         .error-label {
             color: red;
             font-weight: bold;
