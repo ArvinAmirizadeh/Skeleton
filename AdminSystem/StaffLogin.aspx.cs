@@ -46,7 +46,7 @@ public partial class StaffLogin : System.Web.UI.Page
         else if (Found == true)
         {
             //redirect to the List Page
-            Response.Redirect("StaffList.aspx");
+            Response.Redirect("TeamMainMenu.aspx");
         }
         else if (Found == false)
         {
@@ -57,8 +57,4 @@ public partial class StaffLogin : System.Web.UI.Page
 
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("TeamMainMenu.aspx");
-    }
 }

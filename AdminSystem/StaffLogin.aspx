@@ -77,7 +77,6 @@
         </div>
         <div class="form-group">
             <asp:Button ID="btnLogin" runat="server" Height="35px" OnClick="btnLogin_Click" Text="Login" Width="80px" />
-            <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" Height="36px" Width="81px" />
         </div>
         <div class="form-group">
             <asp:Label ID="lblError" runat="server" Width="370px" ForeColor="#FF3300"></asp:Label>
