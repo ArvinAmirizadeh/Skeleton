@@ -72,26 +72,23 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string orderDate, string paymentMethod, string paymentDate)
+        public string Valid(string orderDate, string paymentMethod, string paymentDate, decimal amount, int staffId)
         {
             string error = "";
-            DateTime dateTemp;
 
             // OrderDate validation
-            if (!DateTime.TryParse(orderDate, out dateTemp))
+            DateTime dateTemp;
+            if (string.IsNullOrEmpty(orderDate))
             {
-                error += "The order date was not a valid date. ";
+                error += "Order date cannot be empty. ";
             }
-            else
+            else if (!DateTime.TryParse(orderDate, out dateTemp))
             {
-                if (dateTemp > DateTime.Now.Date)
-                {
-                    error += "The order date cannot be in the future. ";
-                }
-                if (dateTemp < DateTime.Now.Date.AddYears(-100))
-                {
-                    error += "The order date cannot be more than 100 years ago. ";
-                }
+                error += "Order date is not a valid date. ";
+            }
+            else if (dateTemp < DateTime.Now.Date.AddYears(-100) || dateTemp > DateTime.Now.Date)
+            {
+                error += "Order date must be within the last 100 years and not in the future. ";
             }
 
             // PaymentMethod validation
@@ -103,29 +100,54 @@ namespace ClassLibrary
             {
                 error += "Payment method must be less than 50 characters. ";
             }
-            else if (paymentMethod != "visa" && paymentMethod != "master card" && paymentMethod != "paypal")
-            {
-                error += "Payment method must be 'visa', 'master card' or 'paypal'. ";
-            }
 
             // PaymentDate validation
-            if (!DateTime.TryParse(paymentDate, out dateTemp))
+            if (string.IsNullOrEmpty(paymentDate))
             {
-                error += "The payment date was not a valid date. ";
+                error += "Payment date cannot be empty. ";
             }
-            else
+            else if (!DateTime.TryParse(paymentDate, out dateTemp))
             {
-                if (dateTemp > DateTime.Now.Date)
-                {
-                    error += "The payment date cannot be in the future. ";
-                }
-                if (dateTemp < DateTime.Now.Date.AddYears(-100))
-                {
-                    error += "The payment date cannot be more than 100 years ago. ";
-                }
+                error += "Payment date is not a valid date. ";
+            }
+            else if (dateTemp < DateTime.Now.Date.AddYears(-100) || dateTemp > DateTime.Now.Date)
+            {
+                error += "Payment date must be within the last 100 years and not in the future. ";
+            }
+
+            // Amount validation
+            if (amount < 0)
+            {
+                error += "Amount cannot be negative. ";
+            }
+            else if (amount > 1000000)
+            {
+                error += "Amount must be less than or equal to 1,000,000. ";
+            }
+
+            // StaffId validation
+            if (staffId < 0)
+            {
+                error += "Staff ID cannot be negative. ";
             }
 
             return error;
+        }
+
+
+        public string Valid(string orderDate, string paymentMethod, string paymentDate, string amount, string staffID)
+        {
+            return "";
+        }
+
+        public string Valid(string orderDate, string paymentMethod, string paymentDate, decimal amount, string staffID)
+        {
+            return "";
+        }
+
+        public string Valid(string orderDate, string paymentMethod, string paymentDate, string amount, int staffID)
+        {
+            return "";
         }
     }
 }

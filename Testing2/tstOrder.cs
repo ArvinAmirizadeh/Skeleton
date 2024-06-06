@@ -50,7 +50,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void StaffIdPropertyOK()
+        public void StaffIDPropertyOK()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -109,7 +109,7 @@ namespace Testing2
             // String variable to store any error message
             string Error = "";
             // Invoke the method
-            Error = AnOrder.Valid(this.OrderDate, this.PaymentMethod, this.PaymentDate);
+            Error = AnOrder.Valid(this.OrderDate, this.PaymentMethod, this.PaymentDate, this.Amount, this.StaffID);
             // Test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -123,7 +123,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string OrderDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -136,7 +136,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string OrderDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate,Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -148,7 +148,7 @@ namespace Testing2
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string OrderDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate,Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -161,20 +161,20 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string OrderDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate,Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
 
         [TestMethod]
         public void OrderDateExtremeMax()
         {
-            clsOrder AnOrder = new clsOrder();
+            clsOrder aOrder = new clsOrder();
             string Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string OrderDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = aOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
 
@@ -184,7 +184,7 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             string Error = "";
             string OrderDate = "this is not a date!";
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
 
@@ -194,7 +194,7 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             string Error = "";
             string PaymentMethod = "";
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
 
@@ -204,7 +204,7 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             string Error = "";
             string PaymentMethod = "paypal";
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -217,7 +217,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string PaymentDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -230,7 +230,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string PaymentDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -242,7 +242,7 @@ namespace Testing2
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string PaymentDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreEqual("", Error);
         }
 
@@ -255,7 +255,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string PaymentDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
 
@@ -268,7 +268,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string PaymentDate = TestDate.ToString();
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
 
@@ -278,8 +278,147 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             string Error = "";
             string PaymentDate = "this is not a date!";
-            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate);
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
             Assert.AreNotEqual("", Error);
         }
+        [TestMethod]
+        public void AmountExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 0;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 0.01m;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 1.00m;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 1.01m;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 999999.99m;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 1000000.00m;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = 1000000.01m;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            decimal Amount = decimal.MaxValue;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void AmountInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string Amount = "this is not a valid amount!";
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void StaffIdExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            int StaffID = Int32.MinValue;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffIdMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            int StaffID = -1;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffIdMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            int StaffID = 0;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffIdMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            int StaffID = 1;
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void StaffIdInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string StaffID = "this is not a valid staff ID!";
+            Error = AnOrder.Valid(OrderDate, PaymentMethod, PaymentDate, Amount, StaffID);
+            Assert.AreNotEqual("", Error);
+        }
+
     }
 }
