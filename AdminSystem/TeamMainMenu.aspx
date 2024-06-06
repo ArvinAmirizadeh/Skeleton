@@ -67,9 +67,7 @@
         <div class="form-group">
             <asp:Button ID="btnStockrData" runat="server" OnClick="btnStock_Click" Text="Stock Management" CssClass="aspNetButton" />
         </div>
-        <div class="form-group">
-            <asp:Button ID="btnSupplierData" runat="server" OnClick="btnSupplier_Click" Text="Payment Management" CssClass="aspNetButton" />
-        </div>
+        
         <div class="form-group">
             <asp:Button ID="btnOrderData" runat="server" OnClick="btnOrder_Click" Text="Order Management" CssClass="aspNetButton" />
         </div>
