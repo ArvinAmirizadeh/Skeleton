@@ -9,7 +9,7 @@ namespace Testing2
     {
        
         string StaffID = "1";
-        string Amount = "20.10";
+        string Amount = "100";
         string PaymentMethod = "visa";
         string OrderDate = DateTime.Now.ToShortDateString(); 
         string PaymentDate = DateTime.Now.ToShortDateString();
@@ -108,7 +108,7 @@ namespace Testing2
             // create a boolean variable to store the results of the validation
             Boolean Found = false;
             // create some test data to use with the method
-            Int32 OrderId = 4;
+            Int32 OrderId = 1;
             // invoke the method
             Found = AnOrder.Find(OrderId);
             // test to see if the result is true
@@ -151,7 +151,7 @@ namespace Testing2
             // invoke the method
             Found = AnOrder.Find(OrderId);
             // check the OrderDate property
-            if (AnOrder.OrderDate != Convert.ToDateTime("12/05/2024"))
+            if (AnOrder.OrderDate != Convert.ToDateTime("06/06/2024"))
             {
                 OK = false;
             }
@@ -169,11 +169,11 @@ namespace Testing2
             // create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             // create test data
-            Int32 OrderId = 4;
+            Int32 OrderId = 1;
             // invoke the method
             Found = AnOrder.Find(OrderId);
             // check the StaffId property
-            if (AnOrder.StaffID != 1)
+            if (AnOrder.StaffID != 20)
             {
                 OK = false;
             }
@@ -191,11 +191,11 @@ namespace Testing2
             // create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             // create test data
-            Int32 OrderId = 4;
+            Int32 OrderId = 1;
             // invoke the method
             Found = AnOrder.Find(OrderId);
             // check the Amount property
-            if (AnOrder.Amount != 979)
+            if (AnOrder.Amount != 100)
             {
                 OK = false;
             }
@@ -213,11 +213,11 @@ namespace Testing2
             // create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             // create test data
-            Int32 OrderId = 4;
+            Int32 OrderId = 1;
             // invoke the method
             Found = AnOrder.Find(OrderId);
             // check the PaymentDate property
-            if (AnOrder.PaymentDate != Convert.ToDateTime("12/10/2024"))
+            if (AnOrder.PaymentDate != Convert.ToDateTime("05/06/2024"))
             {
                 OK = false;
             }
@@ -235,11 +235,11 @@ namespace Testing2
             // create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             // create test data
-            Int32 OrderId = 4;
+            Int32 OrderId = 1;
             // invoke the method
             Found = AnOrder.Find(OrderId);
             // check the PaymentMethod property
-            if (AnOrder.PaymentMethod != "Credit Card")
+            if (AnOrder.PaymentMethod != "visa")
             {
                 OK = false;
             }
