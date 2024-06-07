@@ -11,7 +11,7 @@ namespace ClassLibrary
             //object for the data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
-            DB.Execute("sproc_TableStock_SelectAll");
+            DB.Execute("sproc_StockTable_SelectAll");
             //populate the array list with the data table
             PopulateArray(DB);
         }
@@ -75,7 +75,7 @@ namespace ClassLibrary
             DB.AddParameter("@Size", mThisProduct.Size);
             DB.AddParameter("@Quantity", mThisProduct.Quantity);
             //execute the query returning the primary key value
-            return DB.Execute("sproc_TableStock_Insert");
+            return DB.Execute("sproc_StockTable_Insert");
         }
 
         public void Update()
@@ -91,7 +91,7 @@ namespace ClassLibrary
             DB.AddParameter("@Size", mThisProduct.Size);
             DB.AddParameter("@Quantity", mThisProduct.Quantity);
             //execute the stored procedure
-            DB.Execute("sproc_TableStock_Update");
+            DB.Execute("sproc_StockTable_Update");
         }
 
         public void Delete()
@@ -102,7 +102,7 @@ namespace ClassLibrary
             //set the parameters for the sproc
             DB.AddParameter("@ProductId", mThisProduct.ProductId);
             //execute sproc
-            DB.Execute("sproc_TableStock_Delete");
+            DB.Execute("sproc_StockTable_Delete");
         }
 
         public void ReportByProductName(string ProductName)
