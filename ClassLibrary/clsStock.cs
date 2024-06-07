@@ -114,7 +114,7 @@ namespace ClassLibrary
                 //add the parameter for the product id to search for
                 DB.AddParameter("@ProductId", productId);
                 //execute stored procedure
-                DB.Execute("sproc_tblProduct_FilterByProductId");
+                DB.Execute("sproc_StockTable_FilterByProductId");
 
                 //if one record is found (Either one or zero)
                 if (DB.Count == 1)
@@ -173,17 +173,14 @@ namespace ClassLibrary
                     Error = Error + "The brand must be less than 30 characters : ";
                 }
 
-                if (size.Length == 0)
-                {
-                    //record the error
-                    Error = Error + "The size may not be blank : ";
-                }
+            if (int.Parse(size) > 1000)
+            {
+                Error += "The size cannot be more than 1000.";
+            }
 
-                if (size.Length > 10)
-                {
-                    //record the error
-                    Error = Error + "The size must be less than 10 characters : ";
-                }
+            // Other validation logic...
+
+            return Error;
 
                 if ( Convert.ToInt32(quantity) ==0 || quantity.ToString().Length == 0 )
                 {
