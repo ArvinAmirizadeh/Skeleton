@@ -134,20 +134,19 @@ namespace ClassLibrary
             return error;
         }
 
-
         public string Valid(string orderDate, string paymentMethod, string paymentDate, string amount, string staffID)
         {
-            return "";
+            throw new NotImplementedException();
         }
 
         public string Valid(string orderDate, string paymentMethod, string paymentDate, decimal amount, string staffID)
         {
-            return "";
+            throw new NotImplementedException();
         }
 
         public string Valid(string orderDate, string paymentMethod, string paymentDate, string amount, int staffID)
         {
-            return "";
+            throw new NotImplementedException();
         }
     }
 }

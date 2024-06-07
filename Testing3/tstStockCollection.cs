@@ -33,10 +33,10 @@ namespace Testing5
             clsStock TestItem = new clsStock();
             //set its properties
             TestItem.ProductId = 1;
-            TestItem.ProductName = "TestProduct";
-            TestItem.Price = 1000;
-            TestItem.Brand = "TestBrand";
-            TestItem.Size = "L";
+            TestItem.ProductName = "AirForce1";
+            TestItem.Price = 110;
+            TestItem.Brand = "Nike";
+            TestItem.Size = "10,9,11";
             TestItem.Quantity = 10;
             //add the item to the test list
             TestList.Add(TestItem);
@@ -55,10 +55,10 @@ namespace Testing5
             clsStock TestProduct = new clsStock();
             //set the properties of the test object
             TestProduct.ProductId = 1;
-            TestProduct.ProductName = "TestProduct";
-            TestProduct.Price = 1000;
-            TestProduct.Brand = "TestBrand";
-            TestProduct.Size = "L";
+            TestProduct.ProductName = "Airforce1";
+            TestProduct.Price = 110;
+            TestProduct.Brand = "Nike";
+            TestProduct.Size = "10,9,11";
             TestProduct.Quantity = 10;
             //assign the data to the property
             AllProducts.ThisProduct = TestProduct;
@@ -78,10 +78,10 @@ namespace Testing5
             clsStock TestItem = new clsStock();
             //set its properties
             TestItem.ProductId = 1;
-            TestItem.ProductName = "TestProduct";
-            TestItem.Price = 1000;
-            TestItem.Brand = "TestBrand";
-            TestItem.Size = "L";
+            TestItem.ProductName = "Airforce1";
+            TestItem.Price = 110;
+            TestItem.Brand = "Nike";
+            TestItem.Size = "10,9,11";
             TestItem.Quantity = 10;
             //add the item to the test list
             TestList.Add(TestItem);

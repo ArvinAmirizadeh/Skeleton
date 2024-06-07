@@ -185,9 +185,9 @@ namespace ClassLibrary
                     Error = Error + "The size must be less than 10 characters : ";
                 }
 
-                if (quantity == null || quantity == "")
+                if ( Convert.ToInt32(quantity) ==0 || quantity.ToString().Length == 0 )
                 {
-                    Error = Error + "Quantity cannot be left blank : ";
+                    Error = Error + "Quantity cannot be left blank or 0 : ";
                 }
                 else
                 {
@@ -240,5 +240,7 @@ namespace ClassLibrary
                 //return any error messages
                 return Error;
             }
-        }
+
+        
+    }
     }
