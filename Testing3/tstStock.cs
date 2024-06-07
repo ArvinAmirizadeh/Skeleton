@@ -510,23 +510,24 @@ namespace Testing2
                 Assert.AreEqual(Error, "");
             }
 
-            [TestMethod]
-            public void BrandMax()
-            {
-                //create instance
-                clsStock AStock = new clsStock();
-                //string variable to store any error message
-                String Error = "";
-                //create test data (override the good data) to pass to the method
-                string Brand = "";
-                Brand = Brand.PadRight(50, 'a'); //this should pass
-                                                 //invoke method
-                Error = AStock.Valid( ProductName, Price.ToString(), Brand, Size, Quantity.ToString());
-                //test to see that the result is correct
-                Assert.AreEqual(Error, "");
-            }
+        [TestMethod]
+        public void BrandMax()
+        {
+            //create instance
+            clsStock AStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string Brand = new string('a', 50); //this should fail
+            string Size = "1"; // Ensure size is not blank
+                               //invoke method
+            Error = AStock.Valid(ProductName, Price.ToString(), Brand, Size, Quantity.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "The brand must be less than 30 characters : ");
+        }
 
-            [TestMethod]
+
+        [TestMethod]
             public void BrandMaxPlusOne()
             {
                 //create instance
@@ -778,6 +779,7 @@ namespace Testing2
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
 
         [TestMethod]
         public void SizeExtremeMax()

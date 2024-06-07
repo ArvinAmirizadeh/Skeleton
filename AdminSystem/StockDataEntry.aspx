@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="StaffDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="StockDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
 
@@ -79,24 +79,24 @@
 <body>
     <form id="form1" runat="server">
         <div class="form-group">
-            <asp:Label ID="lblStaffID" runat="server" Text="Staff ID"></asp:Label>
+            <asp:Label ID="lblItemID" runat="server" Text="Product ID"></asp:Label>
             <asp:TextBox ID="txtStaffID" runat="server" MaxLength="4" TextMode="Number"></asp:TextBox>
             <asp:Button ID="Button1" runat="server" OnClick="btnFind_Click" Text="Find" />
         </div>
         <div class="form-group">
-            <asp:Label ID="lblStaffName" runat="server" Text="Staff Name"></asp:Label>
+            <asp:Label ID="lblProductName" runat="server" Text="Product Name"></asp:Label>
             <asp:TextBox ID="txtStaffName" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <asp:Label ID="lblStaffEmail" runat="server" Text="Staff Email"></asp:Label>
+            <asp:Label ID="lblPrice" runat="server" Text="Price"></asp:Label>
             <asp:TextBox ID="txtStaffEmail" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <asp:Label ID="lblStaffRole" runat="server" Text="Staff Role"></asp:Label>
+            <asp:Label ID="lblBrand" runat="server" Text="Brand"></asp:Label>
             <asp:TextBox ID="txtStaffRole" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number"></asp:Label>
+            <asp:Label ID="lblSize" runat="server" Text="Size"></asp:Label>
             <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
         </div>
         <div class="form-group button-group">

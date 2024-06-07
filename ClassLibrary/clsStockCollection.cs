@@ -63,6 +63,8 @@ namespace ClassLibrary
             }
         }
 
+        public object StockList { get; set; }
+
         public int Add()
         {
             //adds a record to the database based on the values of mThisProduct
